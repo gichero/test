@@ -1,13 +1,29 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import firebase from './Firebase';
 import { Actions } from 'react-native-router-flux';
-import {FormLabel, FormInput} from 'react-native-elements';
+import {FormLabel, FormInput, Button} from 'react-native-elements';
 
 
 export default class RegisterForm extends React.Component{
     constructor(props){
         super(props);
-        this.state = { username: '', email: '', DOB: '', password: '' };
+        this.state = { username: '', email: '', DOB: '', password: '', error: '' };
+    }
+
+
+    onSignUpPress(){
+        this.setState({error: '', loading: false});
+
+        const{email, password} = this.state;
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(()=>{
+            this.state({ error: '', loading: false });
+            this.props.navigation.navigate('Main');
+        })
+        .catch(()=>{
+            this.setState({error: 'Email already in use', loading: false});
+        })
     }
 
     renderButton(){
@@ -15,8 +31,14 @@ export default class RegisterForm extends React.Component{
         return (
             <View>
 
-                <Button onPress={() => Actions.login()}
-                title = 'Log in' />
+                <Button onPress={this.onSignUpPress.bind(this)}
+                title = 'Sign Up'
+                raised
+                buttonStyle={{backgroundColor: 'blue', borderRadius: 5}}
+                textStyle={{textAlign: 'center'}}
+                />
+
+                <Text onPress={() => Actions.login()}>back</Text>
             </View>
         )
     }
@@ -26,10 +48,10 @@ export default class RegisterForm extends React.Component{
             <View>
                 <FormLabel>Username</FormLabel>
                 <FormInput
-                value = {this.state.usermail}
+                value = {this.state.username}
                 autoCapitalize = 'none'
                 onChangeText={username => this.setState({username})}
-                placeholder = 'user@domain.com'
+                placeholder = 'username'
                 />
                 <FormLabel>Email</FormLabel>
                 <FormInput

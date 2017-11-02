@@ -1,12 +1,27 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import firebase from './Firebase';
 import { Actions } from 'react-native-router-flux';
-import {FormLabel, FormInput} from 'react-native-elements';
+import {FormLabel, FormInput, Button} from 'react-native-elements';
 
 export default class LoginForm extends React.Component{
     constructor(props){
         super(props);
         this.state = { email: '', password: '', error: '', loading: false };
+    }
+
+    onLoginPress(){
+        this.setState({error: '', loading: true});
+
+        const{email, password} = this.state;
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
+            this.setState({error: '', loading: false});
+            //this.props.navigation.navigate('Main');
+        })
+        .catch(()=>{
+            this.setState({error: 'Authentication Failed', loading: false});
+        })
     }
 
     renderButtonOrLoading(){
@@ -16,10 +31,14 @@ export default class LoginForm extends React.Component{
         }
         return (
             <View>
-                <Button title = 'Login' />
+                <Button onPress={this.onLoginPress.bind(this)}
+                title = 'Login'
+                raised
+                buttonStyle={{backgroundColor: 'green', borderRadius: 5}}
+                textStyle={{textAlign: 'center'}} />
 
-                <Button onPress={() => Actions.register()}
-                title = 'Sign Up' />
+                <Text onPress={() => Actions.register()}
+                >Create account</Text>
             </View>
         )
     }
