@@ -19,7 +19,6 @@ export default class RegisterForm extends React.Component{
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(()=>{
             this.state({ error: '', loading: false });
-            this.props.navigation.navigate('Main');
         })
         .catch(()=>{
             this.setState({error: 'Email already in use', loading: false});
@@ -57,7 +56,6 @@ export default class RegisterForm extends React.Component{
                 <FormInput
                 value = {this.state.email}
                 autoCapitalize = 'none'
-                secureTextEntry
                 placeholder = 'user@domail.com'
                 onChangeText={email => this.setState({email})}
                 />
@@ -72,6 +70,7 @@ export default class RegisterForm extends React.Component{
                 <FormInput
                 value = {this.state.password}
                 autoCapitalize = 'none'
+                secureTextEntry
                 onChangeText={password => this.setState({password})}
                 placeholder = 'password'
                 />

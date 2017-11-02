@@ -17,7 +17,6 @@ export default class LoginForm extends React.Component{
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then(() => {
             this.setState({error: '', loading: false});
-            //this.props.navigation.navigate('Main');
         })
         .catch(()=>{
             this.setState({error: 'Authentication Failed', loading: false});
