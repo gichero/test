@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import firebase from './Firebase';
 import { Actions } from 'react-native-router-flux';
-import {FormLabel, FormInput, Button} from 'react-native-elements';
+import {FormLabel, FormInput, Button, SocialIcon, Header} from 'react-native-elements';
 
 export default class LoginForm extends React.Component{
     constructor(props){
@@ -11,13 +11,16 @@ export default class LoginForm extends React.Component{
     }
 
     onLoginPress(){
+
         this.setState({error: '', loading: true});
 
         const{email, password} = this.state;
         firebase.auth().signInWithEmailAndPassword(email, password)
+
         .then(() => {
             this.setState({error: '', loading: false});
         })
+
         .catch(()=>{
             this.setState({error: 'Authentication Failed', loading: false});
         })
@@ -33,19 +36,31 @@ export default class LoginForm extends React.Component{
             <View>
                 <Button onPress={this.onLoginPress.bind(this)}
                 title = 'Login'
-                raised
+                large
                 buttonStyle={{backgroundColor: 'green', borderRadius: 5}}
                 textStyle={{textAlign: 'center'}} />
 
+                <SocialIcon
+                  title='Log In With Facebook'
+                  button
+                  type='facebook'
+                />
+
                 <Text onPress={() => Actions.register()}
                 >Create account</Text>
+
             </View>
         )
     }
 
     render(){
         return(
-            <View>
+            <View style = {styles.container}>
+                <Header
+                leftComponent={{ icon: 'menu', color: '#F79F87' }}
+                centerComponent={{ text: 'Login Form', style: { color: '#000' }}}
+                rightComponent={{ icon: 'home', color: '#000' }}
+                />
                 <FormLabel>Email</FormLabel>
                 <FormInput
                 value = {this.state.email}
@@ -66,3 +81,10 @@ export default class LoginForm extends React.Component{
         )
     }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
+  },
+});

@@ -32,20 +32,6 @@ export default class App extends React.Component {
 
             </Scene>
         </Router>
-    //   <View style={styles.container}>
-    //     <Text>I'll have to use react router flux on this one!</Text>
-    //     <Text>I am struggling and it's good.</Text>
-    //     <Text>Shake your phone to open the developer menu.</Text>
-    //   </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
