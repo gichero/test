@@ -21,6 +21,7 @@ export default class LoginForm extends React.Component{
         .catch(()=>{
             this.setState({error: 'Authentication Failed', loading: false});
         })
+        Actions.welcome();
     }
 
     renderButtonOrLoading(){

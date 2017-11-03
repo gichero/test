@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import LoginForm from './src/LoginForm';
 import RegisterForm from './src/RegisterForm';
+import Welcome from './src/Welcome';
 import { Router, Scene } from 'react-native-router-flux';
 
 export default class App extends React.Component {
@@ -21,6 +22,12 @@ export default class App extends React.Component {
             key = 'register'
             component = {RegisterForm}
             title = 'Register Form'
+            />
+
+            <Scene
+            key = 'welcome'
+            component = {Welcome}
+            title = 'Welcome'
             />
 
             </Scene>

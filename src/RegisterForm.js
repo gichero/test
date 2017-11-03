@@ -8,30 +8,36 @@ import {FormLabel, FormInput, Button} from 'react-native-elements';
 export default class RegisterForm extends React.Component{
     constructor(props){
         super(props);
-        this.state = { username: '', email: '', DOB: '', password: '', error: '' };
+        this.state = { username: '', email: '', DOB: '', password: '', verifyPassword: '', error: '' };
     }
 
 
     onSignUpPress(){
-        this.setState({error: '', loading: false});
+        if (this.state.password == this.state.verifyPassword){
+            this.setState({error: '', loading: false});
 
-        const{email, password} = this.state;
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(()=>{
-            this.state({ error: '', loading: false });
-        })
-        .catch(()=>{
-            this.setState({error: 'Email already in use', loading: false});
-        })
+            const{email, password} = this.state;
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(()=>{
+                this.state({ error: '', loading: false });
+            })
+            .catch(()=>{
+                this.setState({error: 'Email already in use', loading: false});
+            })
+
+        }else {
+            console.log("Passwords do not match");
+                this.setState({error: 'Passwords do not match', loading: false});
+
+        }
     }
 
     renderButton(){
 
         return (
             <View>
-
                 <Button onPress={this.onSignUpPress.bind(this)}
-                title = 'Sign Up'
+                title = 'Create an account'
                 raised
                 buttonStyle={{backgroundColor: 'blue', borderRadius: 5}}
                 textStyle={{textAlign: 'center'}}
@@ -73,6 +79,14 @@ export default class RegisterForm extends React.Component{
                 secureTextEntry
                 onChangeText={password => this.setState({password})}
                 placeholder = 'password'
+                />
+                <FormLabel>Verify Password</FormLabel>
+                <FormInput
+                value = {this.state.verifyPassword}
+                autoCapitalize = 'none'
+                secureTextEntry
+                onChangeText={verifyPassword => this.setState({verifyPassword})}
+                placeholder = 'verify password'
                 />
                 {this.renderButton()}
             </View>
