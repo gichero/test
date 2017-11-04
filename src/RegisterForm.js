@@ -43,7 +43,11 @@ export default class RegisterForm extends React.Component{
                 textStyle={{textAlign: 'center'}}
                 />
 
-                <Text onPress={() => Actions.login()}>back</Text>
+                <Text
+                onPress={() => Actions.login()}
+                style={styles.styling}
+                title = 'Back'
+                />
             </View>
         )
     }
@@ -51,6 +55,11 @@ export default class RegisterForm extends React.Component{
     render(){
         return(
             <View>
+                <Header
+                leftComponent={{ icon: 'menu', color: '#F79F87' }}
+                centerComponent={{ text: 'Register Form', style: { color: '#000' }}}
+                rightComponent={{ icon: 'home', color: '#000' }}
+                />
                 <FormLabel>Username</FormLabel>
                 <FormInput
                 value = {this.state.username}
@@ -93,3 +102,12 @@ export default class RegisterForm extends React.Component{
         )
     }
 }
+const styles = StyleSheet.create({
+  styling: {
+      marginTop: 10,
+      alignItems: 'center',
+      fontWeight: 'bold',
+      color: '#000',
+      fontSize: '20'
+  }
+});

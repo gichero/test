@@ -46,7 +46,9 @@ export default class LoginForm extends React.Component{
                   type='facebook'
                 />
 
-                <Text onPress={() => Actions.register()}
+                <Text
+                onPress={() => Actions.register()}
+                style={styles.styling}
                 >Create account</Text>
 
             </View>
@@ -84,7 +86,13 @@ export default class LoginForm extends React.Component{
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff'
+    flex: 1
   },
+  styling: {
+      marginTop: 10,
+      alignItems: 'center',
+      fontWeight: 'bold',
+      color: '#000',
+      fontSize: '20'
+  }
 });
