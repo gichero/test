@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import firebase from './Firebase';
 import { Actions } from 'react-native-router-flux';
-import {FormLabel, FormInput, Button} from 'react-native-elements';
+import {FormLabel, FormInput, Button, Header} from 'react-native-elements';
 
 
 export default class RegisterForm extends React.Component{
@@ -59,6 +59,7 @@ export default class RegisterForm extends React.Component{
                 leftComponent={{ icon: 'menu', color: '#F79F87' }}
                 centerComponent={{ text: 'Register Form', style: { color: '#000' }}}
                 rightComponent={{ icon: 'home', color: '#000' }}
+
                 />
                 <FormLabel>Username</FormLabel>
                 <FormInput
@@ -108,6 +109,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       fontWeight: 'bold',
       color: '#000',
-      fontSize: '20'
+      fontSize: 20
   }
 });

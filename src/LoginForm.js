@@ -86,13 +86,14 @@ export default class LoginForm extends React.Component{
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    height: 30
   },
   styling: {
       marginTop: 10,
       alignItems: 'center',
       fontWeight: 'bold',
       color: '#000',
-      fontSize: '20'
+      fontSize: 20
   }
 });
