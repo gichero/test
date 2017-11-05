@@ -28,7 +28,6 @@ export default class RegisterForm extends React.Component{
         }else {
             console.log("Passwords do not match");
                 this.setState({error: 'Passwords do not match', loading: false});
-
         }
     }
 
@@ -36,17 +35,13 @@ export default class RegisterForm extends React.Component{
 
         return (
             <View>
-                <Button onPress={this.onSignUpPress.bind(this)}
+                <Button
+                onPress={this.onSignUpPress.bind(this)}
                 title = 'Create an account'
                 raised
-                buttonStyle={{backgroundColor: 'blue', borderRadius: 5}}
+                buttonStyle={{backgroundColor: 'green', borderRadius: 15,
+                marginTop: 15}}
                 textStyle={{textAlign: 'center'}}
-                />
-
-                <Text
-                onPress={() => Actions.login()}
-                style={styles.styling}
-                title = 'Back'
                 />
             </View>
         )
@@ -55,14 +50,11 @@ export default class RegisterForm extends React.Component{
     render(){
         return(
             <View style = {styles.container}>
-
-                />
                 <FormLabel>Username</FormLabel>
                 <FormInput
                 value = {this.state.username}
                 autoCapitalize = 'none'
                 onChangeText={username => this.setState({username})}
-                placeholder = 'username'
                 />
                 <FormLabel>Email</FormLabel>
                 <FormInput
@@ -84,7 +76,6 @@ export default class RegisterForm extends React.Component{
                 autoCapitalize = 'none'
                 secureTextEntry
                 onChangeText={password => this.setState({password})}
-                placeholder = 'password'
                 />
                 <FormLabel>Verify Password</FormLabel>
                 <FormInput
@@ -92,7 +83,6 @@ export default class RegisterForm extends React.Component{
                 autoCapitalize = 'none'
                 secureTextEntry
                 onChangeText={verifyPassword => this.setState({verifyPassword})}
-                placeholder = 'verify password'
                 />
                 {this.renderButton()}
             </View>
@@ -103,12 +93,5 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#FFE4E1',
-    },
-    styling: {
-      marginTop: 10,
-      alignItems: 'center',
-      fontWeight: 'bold',
-      color: '#000',
-      fontSize: 20
-  }
+    }
 });

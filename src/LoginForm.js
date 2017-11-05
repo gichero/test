@@ -10,6 +10,23 @@ export default class LoginForm extends React.Component{
         this.state = { email: '', password: '', error: '', loading: false };
     }
 
+
+    async logInFB() {
+      const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('1787157768249476', {
+          permissions: ['public_profile'],
+        });
+      if (type === 'success') {
+        // Get the user's name using Facebook's Graph API
+        const response = await fetch(
+          `https://graph.facebook.com/me?access_token=${token}`);
+        // Alert.alert(
+        //   'Logged in!',
+        //   `Hi ${(await response.json()).name}!`,
+        // );
+        Actions.welcome();
+      }
+    }
+
     onLoginPress(){
 
         this.setState({error: '', loading: true});
@@ -34,15 +51,15 @@ export default class LoginForm extends React.Component{
         }
         return (
             <View>
-                <Button onPress={this.onLoginPress.bind(this)}
+                <Button
+                onPress={this.onLoginPress.bind(this)}
                 title = 'Login'
-                large
-                buttonStyle={{backgroundColor: 'green', borderRadius: 5}}
+                buttonStyle={{backgroundColor: 'green', borderRadius: 15, marginTop: 15}}
                 textStyle={{textAlign: 'center'}} />
 
                 <SocialIcon
                   title='Log In With Facebook'
-                  button
+                  button onPress={this.logInFB.bind(this)}
                   type='facebook'
                 />
 
@@ -71,7 +88,6 @@ export default class LoginForm extends React.Component{
                 value = {this.state.password}
                 autoCapitalize = 'none'
                 secureTextEntry
-                placeholder = 'password'
                 onChangeText={password => this.setState({password})}/>
 
                 {this.renderButtonOrLoading()}
