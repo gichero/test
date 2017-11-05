@@ -48,7 +48,7 @@ export default class LoginForm extends React.Component{
 
                 <Text
                 onPress={() => Actions.register()}
-                style={styles.styling}
+                style={styles.textStyling}
                 >Create account</Text>
 
             </View>
@@ -58,11 +58,7 @@ export default class LoginForm extends React.Component{
     render(){
         return(
             <View style = {styles.container}>
-                <Header
-                leftComponent={{ icon: 'menu', color: '#F79F87' }}
-                centerComponent={{ text: 'Login Form', style: { color: '#000' }}}
-                rightComponent={{ icon: 'home', color: '#000' }}
-                />
+
                 <FormLabel>Email</FormLabel>
                 <FormInput
                 value = {this.state.email}
@@ -79,6 +75,7 @@ export default class LoginForm extends React.Component{
                 onChangeText={password => this.setState({password})}/>
 
                 {this.renderButtonOrLoading()}
+
             </View>
         )
     }
@@ -87,13 +84,13 @@ export default class LoginForm extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 30
+    backgroundColor: '#FFE4E1',
   },
-  styling: {
+  textStyling: {
       marginTop: 10,
       alignItems: 'center',
       fontWeight: 'bold',
       color: '#000',
-      fontSize: 20
+      fontSize: 20,
   }
 });

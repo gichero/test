@@ -54,11 +54,7 @@ export default class RegisterForm extends React.Component{
 
     render(){
         return(
-            <View>
-                <Header
-                leftComponent={{ icon: 'menu', color: '#F79F87' }}
-                centerComponent={{ text: 'Register Form', style: { color: '#000' }}}
-                rightComponent={{ icon: 'home', color: '#000' }}
+            <View style = {styles.container}>
 
                 />
                 <FormLabel>Username</FormLabel>
@@ -104,7 +100,11 @@ export default class RegisterForm extends React.Component{
     }
 }
 const styles = StyleSheet.create({
-  styling: {
+    container: {
+      flex: 1,
+      backgroundColor: '#FFE4E1',
+    },
+    styling: {
       marginTop: 10,
       alignItems: 'center',
       fontWeight: 'bold',
