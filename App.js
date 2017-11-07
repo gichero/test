@@ -3,7 +3,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import LoginForm from './src/LoginForm';
 import RegisterForm from './src/RegisterForm';
 import Welcome from './src/Welcome';
+import Lost from './src/Lost';
+import Found from './src/Found';
+import Post from './src/Post';
 import { Router, Scene } from 'react-native-router-flux';
+
+const TabIcon = ({selected, title}) => {
+    return(
+        <Text style={{color: selected ? 'red' : 'black'}}>{title}</Text>
+    );
+};
 
 export default class App extends React.Component {
   render() {
@@ -11,24 +20,49 @@ export default class App extends React.Component {
         <Router>
             <Scene key = 'root'>
 
-            <Scene
-            key = 'login'
-            component = {LoginForm}
-            title = 'Login Form'
-            initial = {true}
-            />
+                <Scene
+                key = 'login'
+                component = {LoginForm}
+                title = 'Login Form'
+                initial = {true}
+                />
 
-            <Scene
-            key = 'register'
-            component = {RegisterForm}
-            title = 'Register Form'
-            />
+                <Scene
+                key = 'register'
+                component = {RegisterForm}
+                title = 'Register Form'
+                />
 
-            <Scene
-            key = 'welcome'
-            component = {Welcome}
-            title = 'Welcome'
-            />
+                <Scene
+                key = "tabbar"
+                tabs
+                tabsBarStyle = {{backgroundColor: "#1e90ff"}}
+                >
+                    <Scene key = "lost" title = "Lost" icon = {TabIcon}>
+                        <Scene
+                        key = 'welcome'
+                        component = {Welcome}
+                        title = 'Welcome'
+                        />
+                    </Scene>
+                    <Scene key = "post" title = "Post" icon = {TabIcon}>
+                        <Scene
+                        key = 'post'
+                        component = {Post}
+                        title = 'Post'
+                        />
+                    </Scene>
+                    <Scene key = "found" title = "Found" icon = {TabIcon}>
+                        <Scene
+                        key = 'found'
+                        component = {Found}
+                        title = 'Found'
+                        />
+                    </Scene>
+
+                </Scene>
+
+
 
             </Scene>
         </Router>
