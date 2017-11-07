@@ -9,10 +9,9 @@ export default class LoginForm extends React.Component{
         super(props);
         this.state = { email: '', password: '', error: '', loading: false };
     }
-
-
+    //1787157768249476
     async logInFB() {
-      const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('1787157768249476', {
+      const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('256113041581235', {
           permissions: ['public_profile'],
         });
       if (type === 'success') {
@@ -28,22 +27,24 @@ export default class LoginForm extends React.Component{
         this.setState({error: '', loading: true});
 
         const{email, password} = this.state;
+
         firebase.auth().signInWithEmailAndPassword(email, password)
 
         .then(() => {
             this.setState({error: '', loading: false});
+            Actions.welcome();
         })
 
         .catch(()=>{
             this.setState({error: 'Authentication Failed', loading: false});
         })
-        Actions.welcome();
+
     }
 
     renderButtonOrLoading(){
         if(this.state.loading){
             return
-                <Text>Loading</Text>
+                <Text style={styles.textStyling}>Loading</Text>
         }
         return (
             <View>
@@ -67,7 +68,6 @@ export default class LoginForm extends React.Component{
             </View>
         )
     }
-
     render(){
         return(
             <View style = {styles.container}>

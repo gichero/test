@@ -38,11 +38,16 @@ export default class App extends React.Component {
                 tabs
                 tabsBarStyle = {{backgroundColor: "#1e90ff"}}
                 >
-                    <Scene key = "lost" title = "Lost" icon = {TabIcon}>
                         <Scene
                         key = 'welcome'
                         component = {Welcome}
                         title = 'Welcome'
+                        />
+                    <Scene key = "lost" title = "Lost" icon = {TabIcon}>
+                        <Scene
+                        key = 'lost'
+                        component = {Lost}
+                        title = 'Lost'
                         />
                     </Scene>
                     <Scene key = "post" title = "Post" icon = {TabIcon}>
@@ -59,11 +64,7 @@ export default class App extends React.Component {
                         title = 'Found'
                         />
                     </Scene>
-
                 </Scene>
-
-
-
             </Scene>
         </Router>
     );
