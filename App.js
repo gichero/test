@@ -38,11 +38,11 @@ export default class App extends React.Component {
                 tabs
                 tabsBarStyle = {{backgroundColor: "#1e90ff"}}
                 >
-                        <Scene
-                        key = 'welcome'
-                        component = {Welcome}
-                        title = 'Welcome'
-                        />
+                    <Scene
+                    key = 'welcome'
+                    component = {Welcome}
+                    title = 'Welcome'
+                    />
                     <Scene key = "lost" title = "Lost" icon = {TabIcon}>
                         <Scene
                         key = 'lost'

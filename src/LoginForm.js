@@ -100,9 +100,9 @@ const styles = StyleSheet.create({
   },
   textStyling: {
       marginTop: 10,
-      alignItems: 'center',
+      textAlign: 'center',
       fontWeight: 'bold',
-      color: '#000',
+      color: '#1e90ff',
       fontSize: 20,
   }
 });

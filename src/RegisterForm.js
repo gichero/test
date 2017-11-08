@@ -14,11 +14,12 @@ export default class RegisterForm extends React.Component{
 
     onSignUpPress(){
         if (this.state.password == this.state.verifyPassword){
-            this.setState({error: '', loading: false});
+            this.setState({error: '', loading: true});
 
-            const{email, password} = this.state;
+            const{ email, password } = this.state;
             firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(()=>{
+                Actions.login();
                 this.state({ error: '', loading: false });
             })
             .catch(()=>{
@@ -30,7 +31,6 @@ export default class RegisterForm extends React.Component{
                 this.setState({error: 'Passwords do not match', loading: false});
         }
     }
-
     renderButton(){
 
         return (
@@ -46,7 +46,6 @@ export default class RegisterForm extends React.Component{
             </View>
         )
     }
-
     render(){
         return(
             <View style = {styles.container}>
