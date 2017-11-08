@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import firebase from './Firebase';
 import { Actions } from 'react-native-router-flux';
-import {FormLabel, FormInput, Button, Header} from 'react-native-elements';
+import { Container, Header, Content, Form, Item, Input, Label, Button, Text } from 'native-base';
 
 
 export default class RegisterForm extends React.Component{
@@ -10,8 +9,6 @@ export default class RegisterForm extends React.Component{
         super(props);
         this.state = { username: '', email: '', DOB: '', password: '', verifyPassword: '', error: '' };
     }
-
-
     onSignUpPress(){
         if (this.state.password == this.state.verifyPassword){
             this.setState({error: '', loading: true});
@@ -31,66 +28,60 @@ export default class RegisterForm extends React.Component{
                 this.setState({error: 'Passwords do not match', loading: false});
         }
     }
-    renderButton(){
-
-        return (
-            <View>
-                <Button
-                onPress={this.onSignUpPress.bind(this)}
-                title = 'Create an account'
-                raised
-                buttonStyle={{backgroundColor: 'green', borderRadius: 15,
-                marginTop: 15}}
-                textStyle={{textAlign: 'center'}}
-                />
-            </View>
-        )
-    }
     render(){
         return(
-            <View style = {styles.container}>
-                <FormLabel>Username</FormLabel>
-                <FormInput
-                value = {this.state.username}
-                autoCapitalize = 'none'
-                onChangeText={username => this.setState({username})}
-                />
-                <FormLabel>Email</FormLabel>
-                <FormInput
-                value = {this.state.email}
-                autoCapitalize = 'none'
-                placeholder = 'user@domail.com'
-                onChangeText={email => this.setState({email})}
-                />
-                <FormLabel>DOB</FormLabel>
-                <FormInput
-                value = {this.state.dob}
-                autoCapitalize = 'none'
-                onChangeText={dob => this.setState({dob})}
-                placeholder = 'date of birth'
-                />
-                <FormLabel>Password</FormLabel>
-                <FormInput
-                value = {this.state.password}
-                autoCapitalize = 'none'
-                secureTextEntry
-                onChangeText={password => this.setState({password})}
-                />
-                <FormLabel>Verify Password</FormLabel>
-                <FormInput
-                value = {this.state.verifyPassword}
-                autoCapitalize = 'none'
-                secureTextEntry
-                onChangeText={verifyPassword => this.setState({verifyPassword})}
-                />
-                {this.renderButton()}
-            </View>
+            <Container>
+                <Content>
+                  <Form>
+                    <Item floatingLabel>
+                      <Label>Username</Label>
+                      <Input
+                      value = {this.state.username}
+                      autoCapitalize = 'none'
+                      onChangeText={username => this.setState({username})}
+                      />
+                    </Item>
+                    <Item floatingLabel>
+                      <Label>email</Label>
+                      <Input
+                      value = {this.state.email}
+                      autoCapitalize = 'none'
+                      onChangeText={email => this.setState({email})}
+                       />
+                    </Item>
+                    <Item floatingLabel>
+                      <Label>Date of birth</Label>
+                      <Input
+                      value = {this.state.dob}
+                      autoCapitalize = 'none'
+                      onChangeText={dob => this.setState({dob})}
+                       />
+                    </Item>
+                    <Item floatingLabel>
+                      <Label>Password</Label>
+                      <Input
+                      value = {this.state.password}
+                      autoCapitalize = 'none'
+                      secureTextEntry
+                      onChangeText={password => this.setState({password})}
+                       />
+                    </Item>
+                    <Item floatingLabel>
+                      <Label>Verify Password</Label>
+                      <Input
+                      value = {this.state.verifyPassword}
+                      autoCapitalize = 'none'
+                      secureTextEntry
+                      onChangeText={verifyPassword => this.setState({verifyPassword})}
+                       />
+                    </Item>
+                  </Form>
+                      <Button block info
+                      onPress={this.onSignUpPress.bind(this)}
+                      ><Text>Create an account</Text>
+                      </Button>
+                </Content>
+            </Container>
         )
     }
 }
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#FFE4E1',
-    }
-});

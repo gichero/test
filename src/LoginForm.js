@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import firebase from './Firebase';
 import { Actions } from 'react-native-router-flux';
-import {FormLabel, FormInput, Button, SocialIcon, Header} from 'react-native-elements';
+import { Container, Header, Content, Form, Item, Input, Label, Button, Text } from 'native-base';
+import {SocialIcon} from 'react-native-elements';
+
 
 export default class LoginForm extends React.Component{
     constructor(props){
@@ -38,71 +39,47 @@ export default class LoginForm extends React.Component{
         .catch(()=>{
             this.setState({error: 'Authentication Failed', loading: false});
         })
-
     }
 
-    renderButtonOrLoading(){
-        if(this.state.loading){
-            return
-                <Text style={styles.textStyling}>Loading</Text>
-        }
-        return (
-            <View>
-                <Button
-                onPress={this.onLoginPress.bind(this)}
-                title = 'Login'
-                buttonStyle={{backgroundColor: 'green', borderRadius: 15, marginTop: 15}}
-                textStyle={{textAlign: 'center'}} />
-
-                <SocialIcon
-                  title='Log In With Facebook'
-                  button onPress={this.logInFB.bind(this)}
-                  type='facebook'
-                />
-
-                <Text
-                onPress={() => Actions.register()}
-                style={styles.textStyling}
-                >Create account</Text>
-
-            </View>
-        )
-    }
     render(){
         return(
-            <View style = {styles.container}>
 
-                <FormLabel>Email</FormLabel>
-                <FormInput
-                value = {this.state.email}
-                autoCapitalize = 'none'
-                onChangeText={email => this.setState({email})}
-                placeholder = 'user@domain.com'
-                />
-                <FormLabel>Password</FormLabel>
-                <FormInput
-                value = {this.state.password}
-                autoCapitalize = 'none'
-                secureTextEntry
-                onChangeText={password => this.setState({password})}/>
+            <Container>
+                <Content>
+                  <Form>
+                    <Item floatingLabel>
+                      <Label>Email</Label>
+                      <Input
+                          value = {this.state.email}
+                          autoCapitalize = 'none'
+                          onChangeText={email => this.setState({email})}
+                      />
+                    </Item>
+                    <Item floatingLabel last>
+                      <Label>Password</Label>
+                      <Input
+                           value = {this.state.password}
+                           autoCapitalize = 'none'
+                           secureTextEntry
+                           onChangeText={password => this.setState({password})}
+                       />
+                    </Item>
+                  </Form>
+                      <Button block info
+                      onPress={this.onLoginPress.bind(this)}
+                      ><Text>Login</Text>
+                      </Button>
 
-                {this.renderButtonOrLoading()}
-
-            </View>
+                      <SocialIcon
+                        title='Log In With Facebook'
+                        button onPress={this.logInFB.bind(this)}
+                        type='facebook'
+                      />
+                      <Text
+                      onPress={() => Actions.register()}
+                      >Create account</Text>
+                </Content>
+            </Container>
         )
     }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFE4E1',
-  },
-  textStyling: {
-      marginTop: 10,
-      textAlign: 'center',
-      fontWeight: 'bold',
-      color: '#1e90ff',
-      fontSize: 20,
-  }
-});
