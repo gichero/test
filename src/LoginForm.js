@@ -22,7 +22,6 @@ export default class LoginForm extends React.Component{
         Actions.welcome();
       }
     }
-
     onLoginPress(){
 
         this.setState({error: '', loading: true});
@@ -35,7 +34,9 @@ export default class LoginForm extends React.Component{
             this.setState({error: '', loading: false});
             Actions.welcome();
         })
-
+        .then(() => {
+            this.setState({email:'', password: ''});
+        })
         .catch(()=>{
             this.setState({error: 'Authentication Failed', loading: false});
         })
@@ -75,9 +76,11 @@ export default class LoginForm extends React.Component{
                         button onPress={this.logInFB.bind(this)}
                         type='facebook'
                       />
-                      <Text
+                      <Button block info
                       onPress={() => Actions.register()}
-                      >Create account</Text>
+                      ><Text>Create account</Text>
+                      </Button>
+
                 </Content>
             </Container>
         )
