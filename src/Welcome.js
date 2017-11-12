@@ -18,5 +18,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#32cd32',
+      textAlign: 'center',
+      fontSize: '800'
     }
 });
