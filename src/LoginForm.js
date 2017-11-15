@@ -76,7 +76,7 @@ export default class LoginForm extends React.Component{
                         button onPress={this.logInFB.bind(this)}
                         type='facebook'
                       />
-                      <Button block info
+                      <Button block
                       onPress={() => Actions.register()}
                       ><Text>Create account</Text>
                       </Button>
