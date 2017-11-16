@@ -16,7 +16,7 @@ export default class RegisterForm extends React.Component{
             firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(()=>{
                 Actions.login();
-                this.setState({ error: '', loading: false });
+                this.setState({ error: '', loading: false }); 
             })
             .then(()=>{
                 this.setState({username: '', email: '', password: '', verifyPassword: ''});

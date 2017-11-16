@@ -2,7 +2,7 @@ import React from 'react';
 import firebase from './Firebase';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, Form, Item, Input, Label, Button, Text } from 'native-base';
-import {SocialIcon} from 'react-native-elements';
+import { SocialIcon } from 'react-native-elements';
 
 
 export default class LoginForm extends React.Component{
